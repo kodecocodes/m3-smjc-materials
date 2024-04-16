@@ -68,8 +68,8 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
     Spacer(modifier = Modifier.height(32.dp))
     OutlinedTextField(value = memberName,
       onValueChange = { newValue ->
-      memberName = newValue
-    },
+        memberName = newValue
+      },
       shape = RoundedCornerShape(16.dp),
       modifier = Modifier.fillMaxWidth(),
       label = {
