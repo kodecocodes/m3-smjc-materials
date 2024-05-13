@@ -81,8 +81,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
       label = "Name",
       inputValue = memberName,
       onInputValueChanged = { newValue ->
-        val upperCaseName = newValue.uppercase()
-        memberName = upperCaseName
+        memberName = newValue
       }
     )
     Spacer(modifier = Modifier.height(40.dp))
