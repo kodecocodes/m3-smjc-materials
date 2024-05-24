@@ -50,7 +50,6 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun SignUpScreen(modifier: Modifier = Modifier) {
-
   Column(
     modifier = modifier
       .fillMaxSize()

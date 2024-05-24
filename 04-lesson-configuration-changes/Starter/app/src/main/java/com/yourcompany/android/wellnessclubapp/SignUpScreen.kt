@@ -44,7 +44,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -54,11 +54,11 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun SignUpScreen(modifier: Modifier = Modifier) {
-  var memberName by rememberSaveable {
+  var memberName by remember {
     mutableStateOf("")
   }
 
-  var memberEmail by rememberSaveable {
+  var memberEmail by remember {
     mutableStateOf("")
   }
   Column(
@@ -81,8 +81,7 @@ fun SignUpScreen(modifier: Modifier = Modifier) {
       label = "Name",
       inputValue = memberName,
       onInputValueChanged = { newValue ->
-        val upperCaseName = newValue.uppercase()
-        memberName = upperCaseName
+        memberName = newValue
       }
     )
     Spacer(modifier = Modifier.height(40.dp))

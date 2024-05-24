@@ -39,13 +39,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -55,16 +54,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SignUpScreen(modifier: Modifier = Modifier,
-                 member: ClubMember,
-                 onMemberUpdated: (ClubMember) -> Unit) {
-  var memberName by rememberSaveable {
-    mutableStateOf("")
-  }
+fun SignUpScreen(modifier: Modifier = Modifier) {
+  var memberName by rememberSaveable { mutableStateOf("") }
 
-  var memberEmail by rememberSaveable {
-    mutableStateOf("")
-  }
+  var memberEmail by rememberSaveable { mutableStateOf("") }
   Column(
     modifier = modifier
       .fillMaxSize()
@@ -79,17 +72,16 @@ fun SignUpScreen(modifier: Modifier = Modifier,
 
       )
     )
-    Spacer(modifier = Modifier.height(20.dp))
+    Spacer(modifier = Modifier.height(32.dp))
 
     FieldInputComponent(
       label = "Name",
       inputValue = memberName,
       onInputValueChanged = { newValue ->
-        val upperCaseName = newValue.uppercase()
-        memberName = upperCaseName
+        memberName = newValue
       }
     )
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(40.dp))
     FieldInputComponent(
       label = "Email",
       inputValue = memberEmail,
@@ -98,33 +90,6 @@ fun SignUpScreen(modifier: Modifier = Modifier,
 
       }
     )
-    Spacer(modifier = Modifier.height(16.dp))
-    Button(
-      modifier = Modifier.fillMaxWidth(),
-      onClick = {
-        val newMember = ClubMember(name = memberName, email = memberEmail)
-        onMemberUpdated(newMember)
-      }) {
-      Text(text = "Submit",
-        modifier = Modifier.padding(8.dp))
-    }
-
-    Spacer(modifier = Modifier.height(10.dp))
-    Divider(
-      thickness = 3.dp,
-    )
-    Spacer(modifier = Modifier.height(10.dp))
-    Text(
-      text = "New Member Details",
-      style = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp
-      )
-    )
-
-    Text(text = "Name: ${member.name}")
-    Text(text = "Email: ${member.email}")
-
   }
 }
 
@@ -143,7 +108,8 @@ fun FieldInputComponent(
       label = {
         Text(text = "Enter Member's $label")
       })
-    Spacer(modifier = Modifier.height(12.dp))
+    Spacer(modifier = Modifier.height(32.dp))
     Text(text = "$label is $inputValue")
   }
+
 }
